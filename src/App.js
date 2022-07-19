@@ -1,5 +1,7 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { withLDProvider } from "launchdarkly-react-client-sdk";
+import HelloWorld from "./helloWorld"; //We will add this code in the next step
 
 function App() {
   return (
@@ -17,9 +19,17 @@ function App() {
         >
           Learn React
         </a>
+        <HelloWorld />
       </header>
     </div>
   );
 }
 
-export default App;
+export default withLDProvider({
+  clientSideID: "62d6d8eb8684e41122f4dc40",
+  user: {
+    key: "example_user",
+    name: "Example user",
+    email: "User@example.com",
+  },
+})(App);
